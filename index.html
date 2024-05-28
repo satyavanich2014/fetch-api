@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fetch api products</title>
+</head>
+<body>
+    <script>  
+        document.body.style.width = "95vw";
+        document.body.style.margin = "auto";
+        fetch("https://fakestoreapi.com/products")
+            .then((res) => res.json())
+            .then((json) => {
+               
+                const products = json;
+                console.log(products);
+       for(let i = 0;i<20;i++) {      
+        var card = document.createElement('div')
+
+
+        card.className = 'card';
+       
+        card.style.border = "1px solid #ccc";
+        card.style.borderRadius = "10px";
+        card.style.marginLeft = "auto";
+        card.style.marginRight = "auto";
+        card.style.marginTop = "10px";
+        card.style.marginBottom = "10px";
+        card.style.display = "flex";
+        card.style.columnGap = "25px";
+        card.style.padding="10px";
+
+        document.body.appendChild(card);
+
+var image = document.createElement('div');
+card.appendChild(image);
+
+var picture = document.createElement('img');
+image.appendChild(picture);
+picture.src=products[i].image;
+picture.style.width="160px";
+picture.style.height="160px";
+
+var text = document.createElement('div');
+card.appendChild(text);
+
+        var title = document.createElement('h3');
+        title.textContent = products[i].title;
+        text.appendChild(title);
+
+        var price = document.createElement('p');
+        price.textContent="Price:$"+ products[i].price;
+text.appendChild(price);
+price.style.color="red";
+
+var Category = document.createElement('p');
+Category.textContent="category:"+products[i].Category;
+text.appendChild(Category);
+
+var desc = document.createElement('p');
+desc.textContent="Description:"+products[i].description;
+text.appendChild(desc);
+
+var rating = document.createElement('p');
+rating.textContent='Rating : ' + products[i].rating.rate + ' / 5';
+text.appendChild(rating);
+rating.style.color="brown";
+
+var button = document.createElement('button');
+button.innerHTML="Buynow";
+button.style.background="blue";
+button.style.color="white";
+text.appendChild(button);}
+            });
+    </script>
+</body>
+</html>
